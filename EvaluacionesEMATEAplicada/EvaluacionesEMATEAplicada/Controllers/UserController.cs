@@ -17,8 +17,24 @@ namespace EvaluacionesEMATEAplicada.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(UserModel user)
         {
-            @TempData["Message"] = user.email;
-            return RedirectToAction("Index","Home");
+            bool condition = true;
+            if (condition){
+                @TempData["Message"] = user.email;
+                return RedirectToAction("ListOfCourses", "User");
+            }
+            else {
+                @TempData["Message"] = user.email;
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+
+        public IActionResult ListOfCourses() {
+            if (TempData["Message"] != null){
+
+                ViewBag.Message = TempData["Message"].ToString();
+            }
+            return View();
         }
     }
 }
