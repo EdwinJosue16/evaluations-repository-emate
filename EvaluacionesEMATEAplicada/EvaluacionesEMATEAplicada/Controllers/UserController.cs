@@ -8,7 +8,7 @@ namespace EvaluacionesEMATEAplicada.Controllers
 {
     public class UserController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Login()
         {
             return View();
         }
@@ -17,6 +17,7 @@ namespace EvaluacionesEMATEAplicada.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(UserModel user)
         {
+            @TempData["Message"] = user.email;
             return RedirectToAction("Index","Home");
         }
     }

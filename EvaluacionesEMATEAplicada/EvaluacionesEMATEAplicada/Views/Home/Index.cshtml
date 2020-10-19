@@ -1,41 +1,16 @@
 ﻿@{ 
     ViewBag.Title = "Inicio";
-}
+    string[] catedras = {"MA-1001", "MA-1002" , "MA-1003", "MA-1004", "MA-1005", "MA-1006" };
+ }
 
 <html>
 
 <head>
    <title> @ViewBag.Title </title>
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", accordionFuction);
-        }
-
-        function accordionFuction() {
-            alert("Holaaa!!");
-            ///* Toggle between adding and removing the "active" class,
-            //to highlight the button that controls the panel */
-            //this.classList.toggle("active");
-
-            ///* Toggle between hiding and showing the active panel */
-            //var panel = this.nextElementSibling;
-            //if (panel.style.display === "block") {
-            //    panel.style.display = "none";
-            //} else {
-            //    panel.style.display = "block";
-            //}
-
-        }
-    </script>
-
-
     <style>
         /* Style the buttons that are used to open and close the accordion panel */
         .accordion {
-            background-color: #eee;
+            background-color: #ccc;
             color: #444;
             cursor: pointer;
             padding: 18px;
@@ -46,15 +21,15 @@
             transition: 0.4s;
         }
 
-            /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-            .active, .accordion:hover {
-                background-color: #ccc;
-            }
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        .active, .accordion:hover {
+            background-color: deepskyblue;
+        }
 
         /* Style the accordion panel. Note: hidden by default */
         .panel {
             padding: 0 18px;
-            background-color: white;
+            background-color:whitesmoke;
             display: none;
             overflow: hidden;
         }
@@ -65,50 +40,45 @@
 
 <body>
     <div class="text-center">
-        <h1> ¡Bienvenido al repositorio de evaluaciones de EMate!  </h1>
+        <h1> ¡Bienvenido  @ViewBag.Message al repositorio de evaluaciones de EMate!  </h1>
     </div>
 
     <div class="row">
         <div class="text-center"> <h3> A continuación se presentan las catedras en las cuales usted es docente</h3> </div>
-        <div class="text-center"> <h4> Lista de catedras</h4> </div>
+        <div class="text-center"> <h4> Lista de cátedras</h4> </div>
+
 
         <div class="col-md-6">
-            <button class="accordion">Catedra 1</button>
-            <div class="panel">
-                <p>Lorem ipsum...</p>
-            </div>
+            @for (var catedra = 0; catedra < (catedras.Length) / 2; ++catedra)
+            {
+                <button class="accordion"> @catedras[catedra] </button>
+                <div class="panel">
+                    <br /> <br />
+                    <a class="btn alert-info" href="#">Grupo # </a>  <p>(Total de estudiantes)</p> <br /> <br />
+                    <a class="btn alert-info" href="#">Grupo # </a>  <p>(Total de estudiantes)</p> <br /> <br />
+                    <a class="btn alert-info" href="#">Grupo # </a>  <p>(Total de estudiantes)</p> <br /> <br />
+                </div>
+            }
 
-            <button class="accordion">Catedra 2</button>
-            <div class="panel">
-                <p>Lorem ipsum...</p>
-            </div>
-
-            <button class="accordion">Catedra 3</button>
-            <div class="panel">
-                <p>Lorem ipsum...</p>
-            </div>
-        </div>        
+        </div>      
+        
         <div class="col-md-6">
-            <button class="accordion">Catedra 1</button>
-            <div class="panel">
-                <p>Lorem ipsum...</p>
-            </div>
+            @for (var catedra = (int) ((catedras.Length) / 2); catedra < catedras.Length; ++catedra)
+            {
+                <button class="accordion"> @catedras[catedra] </button>
+                <div class="panel">
+                    <br /> <br />
+                    <a class="btn alert-info" href="#">Grupo # </a>  <p>(Total de estudiantes)</p> <br /> <br />
+                    <a class="btn alert-info" href="#">Grupo # </a>  <p>(Total de estudiantes)</p> <br /> <br />
+                    <a class="btn alert-info" href="#">Grupo # </a>  <p>(Total de estudiantes)</p> <br /> <br />
+                </div>
+            }
 
-            <button class="accordion">Catedra 2</button>
-            <div class="panel">
-                <p>Lorem ipsum...</p>
-            </div>
 
-            <button class="accordion">Catedra 3</button>
-            <div class="panel">
-                <p>Lorem ipsum...</p>
-            </div>
+            
+
         </div>
-
     </div>
-
-
+    <script src="~/js/Accordion.js"></script>
 </body>
-
-
 </html>
