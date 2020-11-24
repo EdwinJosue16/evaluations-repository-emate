@@ -1,22 +1,21 @@
-﻿var ventana = document.getElementById("vtn-modal");
+﻿var modals = document.getElementsByClassName("modal");
+var buttonsToShowModal = document.getElementsByClassName("show-modal btn-success");
+var buttonsForCloseModal = document.getElementsByClassName("close-modal");
 
-var botonVerModal = document.getElementById("ver");
-
-var botonCerrar = document.getElementsByClassName("close")[0];
-
-
-botonCerrar.addEventListener('click', cerrarConBoton);
-botonVerModal.addEventListener('click', abrir);
-
-function cerrarConBoton() {
-    ventana.style.display = "none";
-}
-
-function abrir() {
-    ventana.style.display = "block";
+function openModal(modal, numero)
+{
+    modal.style.display = "block";
     window.onclick = function (event) {
-        if (event.target == ventana) {
-            ventana.style.display = "none";
+        if (event.target == modal) {
+            modal.style.display = "none";
         }
     }
+}
+
+function closeModal(modal) {
+    modal.style.display = "none";
+}
+
+for (let i = 0; i < modals.length;++i) {
+    buttonsToShowModal[i].addEventListener('click', function () { openModal(modals[i],i) });
 }

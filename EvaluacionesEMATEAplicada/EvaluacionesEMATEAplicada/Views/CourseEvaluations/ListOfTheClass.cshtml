@@ -5,8 +5,8 @@
 <div class="text-center">
     <h1>Catedra: @ViewBag.myCourse.courseCode</h1>
     <h2>Grupo: @ViewBag.myCourse.classNumber</h2>
-    <a class="btn btn-danger" href="#"> Volver al listado de cursos </a> 
-    <a class="btn btn-info" href="#"> Ver resumen de resultado de este grupo </a> 
+    <a class="btn btn-danger" href="#"> Volver al listado de cursos </a>
+    <a class="btn btn-info" href="#"> Ver resumen de resultado de este grupo </a>
     <hr />
 
 </div>
@@ -32,28 +32,25 @@
             <td>@student.id </td>
             <td>@student.firstName @student.firstLastName @student.secondLastName </td>
             <td>
-                <input type="button" class="btn-info" value="Ver notas" />
-                <input type="button" class="btn-danger" id="ver" value="Evaluar" />
+                <input type="button" class="show-modal btn-success" value="Evaluar" />
             </td>
 
             <td>
-                <div>
-                    <div class="modal">
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <h1>Aquí van a estar los tipos de evaluaciones</h1>
-                            <form>
-                                <h5>Esto es una demo (no hace ninguna verificación)</h5>
-                                <label>Parcial I</label>
-                                <input type="number" placeholder="Escriba la nota" /> <br />
-                                <label>Parcial II</label>
-                                <input type="number" placeholder="Escriba la nota" /> <br />
-                                <input type="submit" class="btn btn-success" value="Calificar" />
-                                <input type="reset" class="btn btn-danger" value="Borrar" />
-                            </form>
-                        </div>
-
+                <div class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h1>Aquí van a estar los tipos de evaluaciones de @student.id</h1>
+                        <form>
+                            <h5>Esto es una demo (no hace ninguna verificación)</h5>
+                            <label>Parcial I</label>
+                            <input type="number" placeholder="Escriba la nota" /> <br />
+                            <label>Parcial II</label>
+                            <input type="number" placeholder="Escriba la nota" /> <br />
+                            <input type="submit" class="btn btn-success" value="Calificar" />
+                            <input type="reset" class="show-modal btn btn-danger" value="Borrar" />
+                        </form>
                     </div>
+
                 </div>
             </td>
 
@@ -62,6 +59,6 @@
     }
 
 </table>
-
 <script src="~/js/Modal.js"></script>
 <link rel="stylesheet" type="text/css" href="~/css/Modal.css" />
+
