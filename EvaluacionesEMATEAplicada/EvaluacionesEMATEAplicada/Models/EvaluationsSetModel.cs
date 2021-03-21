@@ -6,6 +6,7 @@ namespace EvaluacionesEMATEAplicada.Models
         public int type { get; set; }
         public string courseCode { get; set; }
         public string studentId { get; set; }
+        public int courseGroup { get; set; }
         public List<SingleEvaluationModel> singleEvaluations { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-﻿@{
+﻿@model EvaluacionesEMATEAplicada.Models.CourseModel
+@{
     ViewBag.Title = ViewBag.myCourse.courseCode + " " + ViewBag.myCourse.classNumber;
-    //int buttonId = 0;
 }
 <div class="text-center">
     <h1>Catedra: @ViewBag.myCourse.courseCode</h1>
@@ -25,40 +25,29 @@
 
 
 
-    @foreach (var student in ViewBag.myCourse.studentList)
+    @foreach (StudentModel student in ViewBag.myCourse.studentList)
     {
 
         <tr>
             <td>@student.id </td>
             <td>@student.firstName @student.firstLastName @student.secondLastName </td>
             <td>
-                <input type="button" class="show-modal btn-success" value="Evaluar" />
-            </td>
-
-            <td>
-                <div class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <h1>Aquí van a estar los tipos de evaluaciones de @student.id</h1>
-                        <form>
-                            <h5>Esto es una demo (no hace ninguna verificación)</h5>
-                            <label>Parcial I</label>
-                            <input type="number" placeholder="Escriba la nota" /> <br />
-                            <label>Parcial II</label>
-                            <input type="number" placeholder="Escriba la nota" /> <br />
-                            <input type="submit" class="btn btn-success" value="Calificar" />
-                            <input type="reset" class="show-modal btn btn-danger" value="Borrar" />
-                        </form>
+                <form asp-action="ModifyEvalutionOf" method="post">
+                    <div class="form-group">
+                            <input type="hidden" name="type" value="@Model.evaluationsSetType" />
+                            <input type="hidden" name="courseCode" value="@Model.courseCode" />
+                            <input type="hidden" name="classNumber" value="@Model.classNumber" />
+                            <input type="hidden" name="studentId" value="@student.id" />
+                            <input type="submit" class="btn btn-success" value="Evaluar" />
                     </div>
-
-                </div>
+                </form>
             </td>
-
         </tr>
 
     }
 
 </table>
+
 <script src="~/js/Modal.js"></script>
 <link rel="stylesheet" type="text/css" href="~/css/Modal.css" />
 
