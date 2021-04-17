@@ -1,47 +1,79 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using EvaluacionesEMATEAplicada.Models;
-using Microsoft.Extensions.Configuration;
-using EvaluacionesEMATEAplicada.Models.Handlers;
+using EvaluacionesEMATEAplicada.Repositories;
 
 namespace EvaluacionesEMATEAplicada.Controllers
 {
     public class CourseEvaluationsController : Controller
     {
-        private readonly IConfiguration configuration;
-        private CourseEvaluationHandler dbContext;
+        private StudentsRepository StudentsRepo;
 
-        public CourseEvaluationsController(IConfiguration configuration)
+        public CourseEvaluationsController()
         {
-            this.configuration = configuration;
-            dbContext = new CourseEvaluationHandler(configuration);
-
+            StudentsRepo = new StudentsRepository();
         }
 
         public IActionResult ListOfTheClass(string courseCode, int classNumber) {
-            StudentModel tempStudent = new StudentModel();
-            List<StudentModel> listOfStudents = new List<StudentModel>();
-            UserModel teacher = new UserModel();
-            CourseModel course = new CourseModel();
-            course.classNumber = classNumber;
-            course.courseCode = courseCode;
-            course.teacher = teacher;
-            course.studentList = dbContext.GetStudents();
+            CourseModel course = new CourseModel
+            {
+                classNumber = classNumber,
+                courseCode = courseCode,
+                teacher = new TeacherModel(), // NO ES UTILIZADO ACTUALMENTE,
+                studentList = StudentsRepo.GetAll()
+            };
             ViewBag.myCourse = course;
             return View(course);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ModifyEvalutionOf(int type, string studentId, string courseCode, int classNumber)
+        public IActionResult ModifyEvalutionOf(string studentId, string courseCode, int classNumber)
         {
-            EvaluationsSetModel evaluationsOFStudent = dbContext.EvaluationsSet1OfStudent(studentId, courseCode, classNumber);
-            return View(evaluationsOFStudent);
+            /*
+             ESTE METODO CONTIENE DATOS DUMMIE, LA IDEA ES TRAER LA INFORMACIÓN DESDE LA BASE DE DATOS
+             UTILIZANDO LOS PARAMETROS RECIBIDOS
+             */
+
+            EvaluationsSetModel evaluations = new EvaluationsSetModel
+            {
+                courseCode = courseCode,
+                studentId = studentId,
+                courseGroup = classNumber,
+                type = 1234,
+
+                singleEvaluations = new List<SingleEvaluationModel>
+                {
+                    new SingleEvaluationModel
+                    {
+                        type = "Parcial I",
+                        evaluationGrade = 45.6,
+                        percent = 33.33
+                    },
+
+                    new SingleEvaluationModel
+                    {
+                        type = "Parcial II",
+                        evaluationGrade = 90.0,
+                        percent = 33.33
+                    },
+                    new SingleEvaluationModel
+                    {
+                        type = "Parcial III",
+                        evaluationGrade = 100.0,
+                        percent = 33.33
+                    }
+                }
+            };
+
+            return View(evaluations);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SaveEvaluation(EvaluationsSetModel model)
         {
+            //ESTE METODO SERA PARA CREAR NUEVOS CONJUNTOS DE EVALUACIONES
             return View();
         }
     }

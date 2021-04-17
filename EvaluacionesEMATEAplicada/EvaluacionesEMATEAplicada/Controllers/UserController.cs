@@ -21,7 +21,7 @@ namespace EvaluacionesEMATEAplicada.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(UserModel user)
         {
-            bool condition = user.email=="admin" && user.password=="asdfghjkl1234!";
+            bool condition = user.email=="admin" && user.password=="1234";
             if (condition){
                 @TempData["Message"] = user.email;
                 return RedirectToAction("ListOfCourses", "User");

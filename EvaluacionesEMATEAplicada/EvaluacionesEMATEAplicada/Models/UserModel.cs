@@ -13,5 +13,10 @@ namespace EvaluacionesEMATEAplicada.Models
         [Display(Name = "Contraseña: ")]
         public string password { set; get; }
         public string fullName { set; get; }
+
+        /*
+         Este modelo está pensado para que sea posible validar los usuarios con acceso a la plataforma
+         y eventualmente para realizar el registro de nuevos usuarios
+         */
     }
 }

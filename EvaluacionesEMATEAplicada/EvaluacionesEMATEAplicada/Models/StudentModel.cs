@@ -18,5 +18,9 @@ namespace EvaluacionesEMATEAplicada.Models
         [Required(ErrorMessage = "Es necesario que ingrese el número de carné del estudiante")]
         [Display(Name = "Número de carné del estudiante: ")]
         public string id { get; set; }
+
+        /*
+         Modelo simple para representar los datos de un estudiante, se usa en el modelo de curso principalmente
+         */
     }
 }

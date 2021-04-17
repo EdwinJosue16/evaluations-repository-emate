@@ -16,5 +16,10 @@ namespace EvaluacionesEMATEAplicada.Models
         [Range(0, 100, ErrorMessage = "El porcentaje debe ser un entre 0% y 100%")]
         [Display(Name = "Ingrese el porcentaje (entre 0 y 100)")]
         public double percent { get; set; }
+
+        /*
+         Este modelo sirve para formar parte de un conjunto de evaluaciones (se utiliza y está explicado en EvaluationsSetModel)
+         y también tiene el proposito de ser utilizado como un medio para crear nuevas evaluaciones
+         */
     }
 }
